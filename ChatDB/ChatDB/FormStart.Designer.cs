@@ -1,6 +1,6 @@
 ﻿namespace ChatDB
 {
-    partial class Form1
+    partial class FormStart
     {
         /// <summary>
         /// Erforderliche Designervariable.
