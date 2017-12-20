@@ -16,5 +16,17 @@ namespace ChatDB
         {
             InitializeComponent();
         }
+
+        private void btn_Open_Click(object sender, EventArgs e)
+        {
+            FormChat fc = new FormChat();
+            fc.ShowDialog();
+            fc.Dispose();
+        }
+
+        private void btn_Create_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

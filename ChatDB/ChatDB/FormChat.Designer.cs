@@ -53,6 +53,7 @@
             // 
             // rich_chat
             // 
+            this.rich_chat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rich_chat.Location = new System.Drawing.Point(12, 12);
             this.rich_chat.Name = "rich_chat";
             this.rich_chat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -68,9 +69,12 @@
             this.Controls.Add(this.rich_chat);
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.txt_message);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(900, 900);
             this.MinimumSize = new System.Drawing.Size(900, 900);
             this.Name = "FormChat";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormChat";
             this.ResumeLayout(false);
