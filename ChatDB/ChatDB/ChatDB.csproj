@@ -87,11 +87,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EncryptString.cs" />
     <Compile Include="FormChat.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormChat.Designer.cs">
       <DependentUpon>FormChat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreateCon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateCon.Designer.cs">
+      <DependentUpon>FormCreateCon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormOpenCon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOpenCon.Designer.cs">
+      <DependentUpon>FormOpenCon.cs</DependentUpon>
     </Compile>
     <Compile Include="FormStart.cs">
       <SubType>Form</SubType>
@@ -103,6 +116,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormChat.resx">
       <DependentUpon>FormChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreateCon.resx">
+      <DependentUpon>FormCreateCon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOpenCon.resx">
+      <DependentUpon>FormOpenCon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStart.resx">
       <DependentUpon>FormStart.cs</DependentUpon>

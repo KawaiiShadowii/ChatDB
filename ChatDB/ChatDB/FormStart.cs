@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ChatDB
 {
@@ -17,16 +18,55 @@ namespace ChatDB
             InitializeComponent();
         }
 
+        #region open .con file
+
         private void btn_Open_Click(object sender, EventArgs e)
         {
-            FormChat fc = new FormChat();
-            fc.ShowDialog();
-            fc.Dispose();
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Multiselect = false;
+            openFile.Filter = "Connection Files (*.con)|*.con";
+            openFile.Title = "Choose a connection file.";
+
+            //save the location of the new databaseconnection string file
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                //asks for password of file and username
+                FormOpenCon foc = new FormOpenCon();
+                foc.FileLocation = openFile.FileName;
+                openFile.Dispose();
+
+                if (foc.ShowDialog() == DialogResult.OK) //if it's successful
+                {
+                    FormChat formChat = new FormChat();
+                    formChat.ConString = foc.ConString;
+                    formChat.UserName = foc.UserName;
+                    foc.Dispose();
+
+                    formChat.ShowDialog();
+                }
+                else
+                {
+                    foc.Dispose();
+                }
+
+            }
+            else
+            {
+                openFile.Dispose();
+            }
         }
+
+        #endregion
+
+        #region create .con file
 
         private void btn_Create_Click(object sender, EventArgs e)
         {
-
+            FormCreateCon fcc = new FormCreateCon();
+            fcc.ShowDialog();
+            fcc.Dispose();
         }
+
+        #endregion
     }
 }

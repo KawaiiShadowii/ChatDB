@@ -17,13 +17,17 @@ namespace ChatDB
             InitializeComponent();
         }
 
+        public string ConString = "", UserName = ""; 
+
         chatdbdatabaseEntities cdbentity = new chatdbdatabaseEntities();
         chatdb tablecdb = new chatdb();
+        
         bool shift = false;
         bool enter = false;
 
         private void FormChat_Load(object sender, EventArgs e)
         {
+            cdbentity.Database.Connection.ConnectionString = ConString;
             RefreshData();
         }
 
