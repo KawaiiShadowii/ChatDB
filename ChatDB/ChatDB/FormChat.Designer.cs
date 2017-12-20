@@ -74,9 +74,10 @@
             this.MaximumSize = new System.Drawing.Size(900, 900);
             this.MinimumSize = new System.Drawing.Size(900, 900);
             this.Name = "FormChat";
-            this.ShowInTaskbar = false;
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormChat";
+            this.Load += new System.EventHandler(this.FormChat_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
