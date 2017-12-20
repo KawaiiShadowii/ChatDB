@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChat));
             this.txt_message = new System.Windows.Forms.TextBox();
             this.btn_send = new System.Windows.Forms.Button();
             this.rich_chat = new System.Windows.Forms.RichTextBox();
@@ -41,6 +42,8 @@
             this.txt_message.Name = "txt_message";
             this.txt_message.Size = new System.Drawing.Size(779, 72);
             this.txt_message.TabIndex = 0;
+            this.txt_message.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_message_KeyDown);
+            this.txt_message.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_message_KeyUp);
             // 
             // btn_send
             // 
@@ -50,12 +53,14 @@
             this.btn_send.TabIndex = 1;
             this.btn_send.Text = "Send";
             this.btn_send.UseVisualStyleBackColor = true;
+            this.btn_send.Click += new System.EventHandler(this.btn_send_Click);
             // 
             // rich_chat
             // 
             this.rich_chat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rich_chat.Location = new System.Drawing.Point(12, 12);
             this.rich_chat.Name = "rich_chat";
+            this.rich_chat.ReadOnly = true;
             this.rich_chat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.rich_chat.Size = new System.Drawing.Size(860, 759);
             this.rich_chat.TabIndex = 2;
@@ -70,7 +75,7 @@
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.txt_message);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(900, 900);
             this.MinimumSize = new System.Drawing.Size(900, 900);
             this.Name = "FormChat";
