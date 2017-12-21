@@ -41,8 +41,10 @@ namespace ChatDB
                     formChat.ConString = foc.ConString;
                     formChat.UserName = foc.UserName;
                     foc.Dispose();
-
+                    this.Hide();
                     formChat.ShowDialog();
+                    this.Show();
+
                 }
                 else
                 {

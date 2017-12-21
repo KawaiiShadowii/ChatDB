@@ -22,6 +22,16 @@ namespace ChatDB
         public string FileLocation, ConString, UserName;
         byte pwcount = 0; //tracks tries on password entry, after 3 quit the form
 
+        #region pressing enter in textboxes
+
+        private void txt_PW_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btn_OK.PerformClick();
+        }
+
+        #endregion
+
         #region button ok
 
         private void btn_OK_Click(object sender, EventArgs e)
