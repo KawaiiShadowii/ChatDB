@@ -40,16 +40,6 @@ namespace ChatDB
             tmr_refresh.Start();
         }
 
-        private void RefreshData()
-        {
-            rich_chat.Clear();
-
-            foreach (chatdb cdb in cdbentity.chatdb)
-            {
-                rich_chat.Text = rich_chat.Text + cdb.username + " - " + cdb.date + ": " + cdb.message + "\n";
-            }
-        }
-
         private void btn_send_Click(object sender, EventArgs e)
         {
             if (!txt_message.Text.Trim().Equals(""))
@@ -79,20 +69,6 @@ namespace ChatDB
                 {
                     MessageBox.Show(ex.ToString());
                 }
-            }
-        }
-
-        private int CheckID()
-        {
-            try
-            {
-                //get the biggest id in the table and and 1 to it
-                return cdbentity.chatdb.Max(x => x.mid) + 1;
-            }
-            catch
-            {
-                //if the table is empty first id is 0
-                return 0;
             }
         }
 
@@ -136,15 +112,56 @@ namespace ChatDB
             finterval.Dispose();
         }
 
+        private int CheckID()
+        {
+            try
+            {
+                //get the biggest id in the table and and 1 to it
+                return cdbentity.chatdb.Max(x => x.mid) + 1;
+            }
+            catch
+            {
+                //if the table is empty first id is 0
+                return 0;
+            }
+        }
+
+        private void RefreshData()
+        {
+            //when the method is starded with a task, an invoke is required
+            rich_chat.Clear();
+
+            foreach (chatdb cdb in cdbentity.chatdb)
+            {
+                rich_chat.Text = rich_chat.Text + cdb.username + " - " + cdb.date + ": " + cdb.message + "\n";
+            }
+        }
+
         private void tmr_refresh_Tick(object sender, EventArgs e)
+        {
+            Task trefresh = new Task(() => taskRefresh());
+            trefresh.Start();
+        }
+
+        private void taskRefresh()
         {
             if (CheckID() != id)
             {
                 id = CheckID();
-                RefreshData();
 
-                rich_chat.SelectionStart = rich_chat.Text.Length;
-                rich_chat.ScrollToCaret();
+                this.rich_chat.BeginInvoke((MethodInvoker)delegate ()
+                {
+                    //when the method is starded with a task, an invoke is required
+                    rich_chat.Clear();
+
+                    foreach (chatdb cdb in cdbentity.chatdb)
+                    {
+                        rich_chat.Text = rich_chat.Text + cdb.username + " - " + cdb.date + ": " + cdb.message + "\n";
+                    }
+
+                    rich_chat.SelectionStart = rich_chat.Text.Length;
+                    rich_chat.ScrollToCaret();
+                });
             }
         }
 
