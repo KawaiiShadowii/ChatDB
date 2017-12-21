@@ -26,6 +26,13 @@ namespace ChatDB
 
         private void btn_OK_Click(object sender, EventArgs e)
         {
+            //username can't be empty           
+            if (txt_Username.Text.Trim() == "")
+            {
+                MessageBox.Show("Username can't be empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             UserName = txt_Username.Text;
 
             using (StreamReader sr = new StreamReader(FileLocation))

@@ -21,7 +21,10 @@ namespace ChatDB
 
         chatdbdatabaseEntities cdbentity = new chatdbdatabaseEntities();
         chatdb tablecdb = new chatdb();
-        
+
+        //speed of the chat refresh
+        decimal interval;
+
         bool shift = false;
         bool enter = false;
 
@@ -98,6 +101,18 @@ namespace ChatDB
             {
                 btn_send.PerformClick();
             }
+        }
+
+        private void intervalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //set interval with form interval
+            FormInterval finterval = new FormInterval();
+            if (finterval.ShowDialog() == DialogResult.OK)
+            {
+                interval = finterval.Interval;
+            }
+
+            finterval.Dispose();
         }
 
         private void txt_message_KeyUp(object sender, KeyEventArgs e)

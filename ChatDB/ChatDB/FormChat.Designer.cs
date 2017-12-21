@@ -84,6 +84,7 @@
             this.intervalToolStripMenuItem.Name = "intervalToolStripMenuItem";
             this.intervalToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.intervalToolStripMenuItem.Text = "Interval";
+            this.intervalToolStripMenuItem.Click += new System.EventHandler(this.intervalToolStripMenuItem_Click);
             // 
             // FormChat
             // 

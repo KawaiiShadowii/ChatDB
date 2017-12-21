@@ -47,8 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>ChatDB.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -104,6 +103,12 @@
     <Compile Include="FormCreateCon.Designer.cs">
       <DependentUpon>FormCreateCon.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInterval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInterval.Designer.cs">
+      <DependentUpon>FormInterval.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormOpenCon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateCon.resx">
       <DependentUpon>FormCreateCon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInterval.resx">
+      <DependentUpon>FormInterval.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOpenCon.resx">
       <DependentUpon>FormOpenCon.cs</DependentUpon>
