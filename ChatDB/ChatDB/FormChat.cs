@@ -165,11 +165,6 @@ namespace ChatDB
             }
         }
 
-        private void rich_message_KeyDown_1(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void rich_message_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey)
