@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChat));
             this.txt_message = new System.Windows.Forms.TextBox();
             this.btn_send = new System.Windows.Forms.Button();
             this.rich_chat = new System.Windows.Forms.RichTextBox();
             this.men_menustrip = new System.Windows.Forms.MenuStrip();
             this.intervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmr_refresh = new System.Windows.Forms.Timer(this.components);
             this.men_menustrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +88,11 @@
             this.intervalToolStripMenuItem.Text = "Interval";
             this.intervalToolStripMenuItem.Click += new System.EventHandler(this.intervalToolStripMenuItem_Click);
             // 
+            // tmr_refresh
+            // 
+            this.tmr_refresh.Interval = 3000;
+            this.tmr_refresh.Tick += new System.EventHandler(this.tmr_refresh_Tick);
+            // 
             // FormChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,5 +126,6 @@
         private System.Windows.Forms.RichTextBox rich_chat;
         private System.Windows.Forms.MenuStrip men_menustrip;
         private System.Windows.Forms.ToolStripMenuItem intervalToolStripMenuItem;
+        private System.Windows.Forms.Timer tmr_refresh;
     }
 }

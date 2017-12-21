@@ -27,11 +27,14 @@ namespace ChatDB
 
         bool shift = false;
         bool enter = false;
+        int id;
 
         private void FormChat_Load(object sender, EventArgs e)
         {
             cdbentity.Database.Connection.ConnectionString = ConString;
+            id = CheckID();
             RefreshData();
+            tmr_refresh.Start();
         }
 
         private void RefreshData()
@@ -58,6 +61,9 @@ namespace ChatDB
                     cdbentity.chatdb.Add(tablecdb);
 
                     cdbentity.SaveChanges();
+
+                    id = CheckID();
+                    MessageBox.Show(id.ToString());
 
                     RefreshData();
 
@@ -109,10 +115,23 @@ namespace ChatDB
             FormInterval finterval = new FormInterval();
             if (finterval.ShowDialog() == DialogResult.OK)
             {
+                tmr_refresh.Stop();
+
                 interval = finterval.Interval;
+
+                tmr_refresh.Interval = Convert.ToInt32(interval*1000);
+                tmr_refresh.Start();
             }
 
             finterval.Dispose();
+        }
+
+        private void tmr_refresh_Tick(object sender, EventArgs e)
+        {
+            if (CheckID() != id)
+            {
+                RefreshData();
+            }
         }
 
         private void txt_message_KeyUp(object sender, KeyEventArgs e)
