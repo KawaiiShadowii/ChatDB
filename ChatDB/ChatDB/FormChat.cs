@@ -139,6 +139,9 @@ namespace ChatDB
             {
                 id = CheckID();
                 RefreshData();
+
+                rich_chat.SelectionStart = rich_chat.Text.Length;
+                rich_chat.ScrollToCaret();
             }
         }
 
