@@ -42,7 +42,7 @@ namespace ChatDB
 
         private void btn_send_Click(object sender, EventArgs e)
         {
-            if (!txt_message.Text.Trim().Equals(""))
+            if (!rich_message.Text.Trim().Equals(""))
             {
                 try
                 {
@@ -50,7 +50,7 @@ namespace ChatDB
                     tablecdb.mid = CheckID();
                     tablecdb.username = UserName;
                     tablecdb.date = DateTime.Now;
-                    tablecdb.message = txt_message.Text;
+                    tablecdb.message = rich_message.Text;
 
                     cdbentity.chatdb.Add(tablecdb);
 
@@ -63,7 +63,7 @@ namespace ChatDB
                     rich_chat.SelectionStart = rich_chat.Text.Length;
                     rich_chat.ScrollToCaret();
 
-                    txt_message.Clear();
+                    rich_message.Clear();
                 }
                 catch (Exception ex)
                 {
@@ -72,7 +72,7 @@ namespace ChatDB
             }
         }
 
-        private void txt_message_KeyDown(object sender, KeyEventArgs e)
+        private void rich_message_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey)
             {
@@ -165,7 +165,12 @@ namespace ChatDB
             }
         }
 
-        private void txt_message_KeyUp(object sender, KeyEventArgs e)
+        private void rich_message_KeyDown_1(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void rich_message_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey)
             {

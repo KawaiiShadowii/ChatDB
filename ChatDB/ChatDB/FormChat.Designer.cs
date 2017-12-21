@@ -30,25 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChat));
-            this.txt_message = new System.Windows.Forms.TextBox();
             this.btn_send = new System.Windows.Forms.Button();
             this.rich_chat = new System.Windows.Forms.RichTextBox();
             this.men_menustrip = new System.Windows.Forms.MenuStrip();
             this.intervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tmr_refresh = new System.Windows.Forms.Timer(this.components);
+            this.rich_message = new System.Windows.Forms.RichTextBox();
             this.men_menustrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txt_message
-            // 
-            this.txt_message.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_message.Location = new System.Drawing.Point(12, 777);
-            this.txt_message.Multiline = true;
-            this.txt_message.Name = "txt_message";
-            this.txt_message.Size = new System.Drawing.Size(779, 72);
-            this.txt_message.TabIndex = 0;
-            this.txt_message.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_message_KeyDown);
-            this.txt_message.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_message_KeyUp);
             // 
             // btn_send
             // 
@@ -93,14 +82,25 @@
             this.tmr_refresh.Interval = 3000;
             this.tmr_refresh.Tick += new System.EventHandler(this.tmr_refresh_Tick);
             // 
+            // rich_message
+            // 
+            this.rich_message.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rich_message.Location = new System.Drawing.Point(12, 777);
+            this.rich_message.Name = "rich_message";
+            this.rich_message.Size = new System.Drawing.Size(779, 72);
+            this.rich_message.TabIndex = 4;
+            this.rich_message.Text = "";
+            this.rich_message.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rich_message_KeyDown);
+            this.rich_message.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rich_message_KeyUp);
+            // 
             // FormChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 861);
+            this.Controls.Add(this.rich_message);
             this.Controls.Add(this.rich_chat);
             this.Controls.Add(this.btn_send);
-            this.Controls.Add(this.txt_message);
             this.Controls.Add(this.men_menustrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -120,12 +120,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txt_message;
         private System.Windows.Forms.Button btn_send;
         private System.Windows.Forms.RichTextBox rich_chat;
         private System.Windows.Forms.MenuStrip men_menustrip;
         private System.Windows.Forms.ToolStripMenuItem intervalToolStripMenuItem;
         private System.Windows.Forms.Timer tmr_refresh;
+        private System.Windows.Forms.RichTextBox rich_message;
     }
 }
