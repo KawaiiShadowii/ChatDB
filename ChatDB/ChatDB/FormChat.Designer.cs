@@ -32,6 +32,9 @@
             this.txt_message = new System.Windows.Forms.TextBox();
             this.btn_send = new System.Windows.Forms.Button();
             this.rich_chat = new System.Windows.Forms.RichTextBox();
+            this.men_menustrip = new System.Windows.Forms.MenuStrip();
+            this.intervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.men_menustrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_message
@@ -58,13 +61,29 @@
             // rich_chat
             // 
             this.rich_chat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rich_chat.Location = new System.Drawing.Point(12, 12);
+            this.rich_chat.Location = new System.Drawing.Point(12, 27);
             this.rich_chat.Name = "rich_chat";
             this.rich_chat.ReadOnly = true;
             this.rich_chat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rich_chat.Size = new System.Drawing.Size(860, 759);
+            this.rich_chat.Size = new System.Drawing.Size(860, 744);
             this.rich_chat.TabIndex = 2;
             this.rich_chat.Text = "";
+            // 
+            // men_menustrip
+            // 
+            this.men_menustrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.intervalToolStripMenuItem});
+            this.men_menustrip.Location = new System.Drawing.Point(0, 0);
+            this.men_menustrip.Name = "men_menustrip";
+            this.men_menustrip.Size = new System.Drawing.Size(884, 24);
+            this.men_menustrip.TabIndex = 3;
+            this.men_menustrip.Text = "menuStrip1";
+            // 
+            // intervalToolStripMenuItem
+            // 
+            this.intervalToolStripMenuItem.Name = "intervalToolStripMenuItem";
+            this.intervalToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.intervalToolStripMenuItem.Text = "Interval";
             // 
             // FormChat
             // 
@@ -74,8 +93,10 @@
             this.Controls.Add(this.rich_chat);
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.txt_message);
+            this.Controls.Add(this.men_menustrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.men_menustrip;
             this.MaximumSize = new System.Drawing.Size(900, 900);
             this.MinimumSize = new System.Drawing.Size(900, 900);
             this.Name = "FormChat";
@@ -83,6 +104,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormChat";
             this.Load += new System.EventHandler(this.FormChat_Load);
+            this.men_menustrip.ResumeLayout(false);
+            this.men_menustrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +116,7 @@
         private System.Windows.Forms.TextBox txt_message;
         private System.Windows.Forms.Button btn_send;
         private System.Windows.Forms.RichTextBox rich_chat;
+        private System.Windows.Forms.MenuStrip men_menustrip;
+        private System.Windows.Forms.ToolStripMenuItem intervalToolStripMenuItem;
     }
 }

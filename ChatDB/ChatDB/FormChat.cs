@@ -48,7 +48,7 @@ namespace ChatDB
                 try
                 {
                     tablecdb.mid = CheckID();
-                    tablecdb.username = "Testuser";
+                    tablecdb.username = UserName;
                     tablecdb.date = DateTime.Now;
                     tablecdb.message = txt_message.Text;
 
@@ -57,6 +57,8 @@ namespace ChatDB
                     cdbentity.SaveChanges();
 
                     RefreshData();
+
+                    txt_message.Clear();
                 }
                 catch (Exception ex)
                 {
