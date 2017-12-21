@@ -33,6 +33,10 @@ namespace ChatDB
             cdbentity.Database.Connection.ConnectionString = ConString;
             id = CheckID();
             RefreshData();
+
+            rich_chat.SelectionStart = rich_chat.Text.Length;
+            rich_chat.ScrollToCaret();
+
             tmr_refresh.Start();
         }
 
@@ -62,7 +66,12 @@ namespace ChatDB
 
                     cdbentity.SaveChanges();
 
+                    id = CheckID();
+
                     RefreshData();
+
+                    rich_chat.SelectionStart = rich_chat.Text.Length;
+                    rich_chat.ScrollToCaret();
 
                     txt_message.Clear();
                 }
@@ -75,7 +84,14 @@ namespace ChatDB
 
         private int CheckID()
         {
-            return cdbentity.chatdb.Max(x => x.mid) + 1;
+            try
+            {
+                return cdbentity.chatdb.Max(x => x.mid) + 1;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         private void txt_message_KeyDown(object sender, KeyEventArgs e)
@@ -121,6 +137,7 @@ namespace ChatDB
         {
             if (CheckID() != id)
             {
+                id = CheckID();
                 RefreshData();
             }
         }
