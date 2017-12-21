@@ -20,7 +20,6 @@ namespace ChatDB
         public string ConString = "", UserName = ""; 
 
         chatdbdatabaseEntities cdbentity = new chatdbdatabaseEntities();
-        chatdb tablecdb = new chatdb();
 
         //speed of the chat refresh
         decimal interval;
@@ -53,6 +52,7 @@ namespace ChatDB
             {
                 try
                 {
+                    chatdb tablecdb = new chatdb();
                     tablecdb.mid = CheckID();
                     tablecdb.username = UserName;
                     tablecdb.date = DateTime.Now;
@@ -61,9 +61,6 @@ namespace ChatDB
                     cdbentity.chatdb.Add(tablecdb);
 
                     cdbentity.SaveChanges();
-
-                    id = CheckID();
-                    MessageBox.Show(id.ToString());
 
                     RefreshData();
 
@@ -78,13 +75,7 @@ namespace ChatDB
 
         private int CheckID()
         {
-            for (int i = 1; true; i++)
-            {
-                if (cdbentity.chatdb.Where(x => x.mid == i).FirstOrDefault() == null)
-                {
-                    return i;
-                }
-            }
+            return cdbentity.chatdb.Max(x => x.mid) + 1;
         }
 
         private void txt_message_KeyDown(object sender, KeyEventArgs e)
