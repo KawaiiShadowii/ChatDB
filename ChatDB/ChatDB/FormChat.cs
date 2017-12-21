@@ -86,10 +86,12 @@ namespace ChatDB
         {
             try
             {
+                //get the biggest id in the table and and 1 to it
                 return cdbentity.chatdb.Max(x => x.mid) + 1;
             }
             catch
             {
+                //if the table is empty first id is 0
                 return 0;
             }
         }
@@ -112,6 +114,7 @@ namespace ChatDB
             }
             else if (enter)
             {
+                e.SuppressKeyPress = true; //normal enter should not add a new line, supress the key press and only use it to send message
                 btn_send.PerformClick();
             }
         }
