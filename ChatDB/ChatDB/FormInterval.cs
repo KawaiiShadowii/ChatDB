@@ -32,5 +32,11 @@ namespace ChatDB
             //just close, let interval be the same
             this.Close();
         }
+
+        private void num_Interval_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btn_OK.PerformClick();
+        }
     }
 }

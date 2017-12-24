@@ -51,6 +51,7 @@
             0,
             0,
             0});
+            this.num_Interval.KeyDown += new System.Windows.Forms.KeyEventHandler(this.num_Interval_KeyDown);
             // 
             // btn_OK
             // 

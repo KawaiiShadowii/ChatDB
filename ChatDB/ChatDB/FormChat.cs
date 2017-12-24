@@ -56,9 +56,8 @@ namespace ChatDB
 
                     cdbentity.SaveChanges();
 
-                    id = CheckID();
-
                     RefreshData();
+                    id = CheckID();
 
                     rich_chat.SelectionStart = rich_chat.Text.Length;
                     rich_chat.ScrollToCaret();
@@ -128,35 +127,43 @@ namespace ChatDB
 
         private void RefreshData()
         {
-            //when the method is starded with a task, an invoke is required
-            rich_chat.Clear();
+            //take the last 30 messages from the chat table, if there are not 30 available take all
+            var getlastmessages = (cdbentity.chatdb.Count()<30)? cdbentity.chatdb.OrderByDescending(x => x.mid):cdbentity.chatdb.OrderByDescending(x => x.mid).Take(30);
+            getlastmessages = getlastmessages.OrderBy(x => x.mid); //then order ascending again
 
-            foreach (chatdb cdb in cdbentity.chatdb)
+            //add new messages
+            foreach (chatdb cdb in getlastmessages)
             {
-                rich_chat.Text = rich_chat.Text + cdb.username + " - " + cdb.date + ": " + cdb.message + "\n";
-            }
+                if(!rich_chat.Text.Contains(cdb.username + " - " + cdb.date + ": " + cdb.message)) //if the chat box doesn't contain that message yet, add it
+                    rich_chat.Text += cdb.username + " - " + cdb.date + ": " + cdb.message + "\n";               
+            }            
         }
+
+        #region refresh tick
 
         private void tmr_refresh_Tick(object sender, EventArgs e)
         {
-            Task trefresh = new Task(() => taskRefresh());
+            Task trefresh = new Task(() => taskRefresh()); //starts a new task, so the ui thread doesn't lag
             trefresh.Start();
         }
 
         private void taskRefresh()
         {
-            if (CheckID() != id)
+            if (CheckID() != id) //check id isn't local id, means there is/are new messages
             {
                 id = CheckID();
 
                 this.rich_chat.BeginInvoke((MethodInvoker)delegate ()
                 {
                     //when the method is starded with a task, an invoke is required
-                    rich_chat.Clear();
 
-                    foreach (chatdb cdb in cdbentity.chatdb)
+                    //take the last 30 messages from the chat table, if there are not 30 available take all
+                    var getlastmessages = (cdbentity.chatdb.Count() < 30) ? cdbentity.chatdb.OrderByDescending(x => x.mid) : cdbentity.chatdb.OrderByDescending(x => x.mid).Take(30);
+
+                    foreach (chatdb cdb in getlastmessages.OrderBy(x => x.mid))
                     {
-                        rich_chat.Text = rich_chat.Text + cdb.username + " - " + cdb.date + ": " + cdb.message + "\n";
+                        if (!rich_chat.Text.Contains(cdb.username + " - " + cdb.date + ": " + cdb.message)) //if the chat box doesn't contain that message yet, add it
+                            rich_chat.Text += cdb.username + " - " + cdb.date + ": " + cdb.message + "\n";
                     }
 
                     rich_chat.SelectionStart = rich_chat.Text.Length;
@@ -164,6 +171,8 @@ namespace ChatDB
                 });
             }
         }
+
+        #endregion
 
         private void rich_message_KeyUp(object sender, KeyEventArgs e)
         {
